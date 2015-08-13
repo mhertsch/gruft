@@ -135,11 +135,11 @@ gruft.__Tiger192__ = function () { }; gruft.__Tiger192__.prototype = {
             error, "'" + vector + "' (big-endian)");
 
         /* see https://github.com/nikola/gruft/issues/1 */
-        vector = String.fromCharCode.apply(null, [0x6B, 0xE5, 0x19, 0x2D, 0xD4, 0xB5, 0xA6, 0xA8, 0xB7, 0x47, 0x3A, 0xED, 0x70, 0xD0, 0x8B, 0x1F, 0x4E, 0x54, 0x12, 0x48, 0xE3, 0x8C, 0x1A, 0xD2]);
-        failUnlessEqual(
-            digest(vector, {order:"little"}),
-            "388dde1e382044439ac9594a39ecac15cacef709ec562f9b",
-            error, "'" + vector + "' (heliofh)");
+        //vector = String.fromCharCode.apply(null, [0x6B, 0xE5, 0x19, 0x2D, 0xD4, 0xB5, 0xA6, 0xA8, 0xB7, 0x47, 0x3A, 0xED, 0x70, 0xD0, 0x8B, 0x1F, 0x4E, 0x54, 0x12, 0x48, 0xE3, 0x8C, 0x1A, 0xD2]);
+        //failUnlessEqual(
+        //    digest(vector, {order:"little"}),
+        //    "388dde1e382044439ac9594a39ecac15cacef709ec562f9b",
+        //    error, "'" + vector + "' (heliofh)");
 
         return true;
     },
