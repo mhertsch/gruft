@@ -120,11 +120,11 @@ gruft.common || ~function (undefined) {
 
     /**
      * Parse arguments and set default options.
-     * 
+     *
      * @exception {gruft.ArgumentError}
      */
     var _parseOptions = function (context, args) {
-        var options = {}, message = null, 
+        var options = {}, message = null,
             error = "Must supply at least one argument <String message>";
         switch (args.length) {
             case 0:
@@ -143,16 +143,19 @@ gruft.common || ~function (undefined) {
                 if (_is.String(args[0]) && _is.Object(args[1])) {
                     options = _setDefaultOptions(context, args[1]);
                     message = args[0];
+                } else if( typeof(Buffer) !== 'undefined' && Buffer.isBuffer(args[0]) && _is.Object(args[1])) {
+                    options = _setDefaultOptions(context, args[1]);
+                    message = args[0];
                 }
         }
-        if (!_is.String(message)) {
+
+        if (!_is.String(message) && typeof (Buffer) !== 'undefined' && !Buffer.isBuffer(message) ) {
             throw gruft.ArgumentError(error);
         } else {
-            options.message = message;    
+            options.message = message;
         }
         return options;
     };
-
 
     /**
      * Set default options for digest and encryption implementations.

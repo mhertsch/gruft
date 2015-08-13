@@ -161,9 +161,17 @@ gruft.__Tiger192__ = function () { }; gruft.__Tiger192__.prototype = {
         do {
             x[n] = 0;
         } while (n--);
+
+        var getByte;
+        if (typeof (Buffer) !== 'undefined' && Buffer.isBuffer(message) ) {
+            getByte = message.readUInt8;
+        } else {
+            getByte = message.charCodeAt;
+        }
+
         for (n = 0; n < bits; n += 8) {
             /* Assume that only 1 byte wide characters are used. */
-            x[n >> 5] |= message.charCodeAt(n / 8) << n % 32;
+            x[n >> 5] |= getByte.call(message, (n / 8)) << n % 32;
         }
 
         /* Apply MD4 padding (little-bit-endian, little-byte-endian, right-justified). */
